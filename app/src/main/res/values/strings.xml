@@ -2,6 +2,65 @@
     <string name="app_name">小耀记账</string>
     <string name="first_intro">AI聊天记账&amp;智能记账</string>
 
+    <string name="welcome1">我是耀小喵</string>
+    <string name="welcome2">你的AI记账管家</string>
+    <string name="welcome3">用AI能力帮助你快乐记账</string>
+
+    <string name="login">登录</string>
+    <string name="register">没有账号？去注册</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="agree">我已阅读并同意《用户协议》和《隐私策略》</string>
+    <string name="error_username_empty">用户名不能为空</string>
+    <string name="error_password_empty">密码不能为空</string>
+
+    <string name="register_title">注册</string>
+    <string name="password_confirm">确认密码</string>
+    <string name="error_username_length">用户名长度应在3–20个字符之间</string>
+    <string name="error_password_length">密码长度应在6–20个字符之间</string>
+    <string name="error_password_confirm">两次密码输入不一致</string>
+    <string name="error_password_confirm_empty">确认密码不能为空</string>
+
+    <string name="bottom_nav_1">明细</string>
+    <string name="bottom_nav_2">图表</string>
+    <string name="bottom_nav_3">记账</string>
+    <string name="bottom_nav_4">小耀</string>
+    <string name="bottom_nav_5">我的</string>
+
+    <string name="used_days_text">已记账 %1$d 天</string>
+    <string name="my_1_1">数据导出</string>
+    <string name="my_1_2">支出报告</string>
+    <string name="my_2_1">账单识别</string>
+    <string name="my_2_2">智能财务建议</string>
+    <string name="my_3_1">问题反馈</string>
+    <string name="my_3_2">关于我们</string>
+    <string name="my_3_3">给应用评分</string>
+
+    <string name="qr_code">请您加微信反馈</string>
+
+    <string name="rating_title">喜欢「小耀记账」吗？</string>
+    <string name="rating_second_title">我们非常重视您的意见</string>
+    <string name="rating_rate_now">五星好评</string>
+    <string name="rating_not_now">我不喜欢</string>
+
+    <string name="about_us">关于我们</string>
+    <string name="about_us_version">V 1.1.0</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="privacy_policy">隐私策略</string>
+
+    <string name="user_info">账户</string>
+    <string name="loginOut">退出登录</string>
+    <string name="userInfo_avatar">头像</string>
+    <string name="userInfo_nickname">昵称</string>
+    <string name="userInfo_sex">性别</string>
+    <string name="userInfo_email">邮箱</string>
+    <string name="userInfo_phone">手机号</string>
+    <string name="phone_default">您还没设置手机号</string>
+    <string name="email_default">您还没设置邮箱</string>
+    <string name="exit">取消</string>
+    <string name="pick_avatar">选择图片</string>
+    <string name="change_password">修改密码</string>
+
 
 
 </resources>

@@ -1,0 +1,52 @@
+<!-- 内层RecyclerView的账单条目布局，item_bill_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="24dp">
+
+    <!-- 左侧的Logo -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ledger_3"
+        />
+
+    <!-- 中间的类型和备注 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类型"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 右边的金额 -->
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200.0"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_gravity="center_vertical" />
+</LinearLayout>

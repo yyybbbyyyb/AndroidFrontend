@@ -1,13 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="gray">#FF9E9E9E</color>
-    <color name="dark_gray">#FF616161</color>
 
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_red">#F85565</color>
+    <color name="gray">#808080</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="money_red">#ffff4444</color>
+    <color name="money_green">#ff99cc00</color>
 
+    <!-- 主色调 (Primary Colors) -->
+    <color name="md_theme_primary">#2A638A</color> <!-- 主要颜色 -->
+    <color name="md_theme_onPrimary">#FFFFFF</color> <!-- 主要颜色上的文字颜色 -->
+    <color name="md_theme_primaryContainer">#CBE6FF</color> <!-- 主要颜色的容器背景 -->
+    <color name="md_theme_onPrimaryContainer">#001E31</color> <!-- 主要容器中的文字颜色 -->
+    <color name="md_theme_primaryFixed">#CBE6FF</color> <!-- 固定的主要颜色 -->
+    <color name="md_theme_onPrimaryFixed">#001E31</color> <!-- 固定主要颜色上的文字颜色 -->
+    <color name="md_theme_primaryFixedDim">#98CCF9</color> <!-- 变暗的固定主要颜色 -->
+    <color name="md_theme_onPrimaryFixedVariant">#034B71</color> <!-- 固定主要颜色的变体上的文字颜色 -->
+    <color name="md_theme_primary_mediumContrast">#00476C</color> <!-- 中等对比度的主要颜色 -->
+    <color name="md_theme_primary_highContrast">#00253B</color> <!-- 高对比度的主要颜色 -->
 
+    <!-- 次色调 (Secondary Colors) -->
+    <color name="md_theme_secondary">#50606F</color> <!-- 次要颜色 -->
+    <color name="md_theme_onSecondary">#FFFFFF</color> <!-- 次要颜色上的文字颜色 -->
+    <color name="md_theme_secondaryContainer">#D4E4F6</color> <!-- 次要颜色的容器背景 -->
+    <color name="md_theme_onSecondaryContainer">#0D1D2A</color> <!-- 次要容器中的文字颜色 -->
+    <color name="md_theme_secondaryFixed">#D4E4F6</color> <!-- 固定的次要颜色 -->
+    <color name="md_theme_onSecondaryFixed">#0D1D2A</color> <!-- 固定次要颜色上的文字颜色 -->
+    <color name="md_theme_secondaryFixedDim">#B8C8D9</color> <!-- 变暗的固定次要颜色 -->
+    <color name="md_theme_onSecondaryFixedVariant">#394856</color> <!-- 固定次要颜色的变体上的文字颜色 -->
+    <color name="md_theme_secondary_mediumContrast">#354452</color> <!-- 中等对比度的次要颜色 -->
+    <color name="md_theme_secondary_highContrast">#142430</color> <!-- 高对比度的次要颜色 -->
 
-    <color name="background_color">#F0F7FF</color>
+    <!-- 第三色调 (Tertiary Colors) -->
+    <color name="md_theme_tertiary">#66587B</color> <!-- 第三颜色 -->
+    <color name="md_theme_onTertiary">#FFFFFF</color> <!-- 第三颜色上的文字颜色 -->
+    <color name="md_theme_tertiaryContainer">#ECDCFF</color> <!-- 第三颜色的容器背景 -->
+    <color name="md_theme_onTertiaryContainer">#211534</color> <!-- 第三容器中的文字颜色 -->
+    <color name="md_theme_tertiaryFixed">#ECDCFF</color> <!-- 固定的第三颜色 -->
+    <color name="md_theme_onTertiaryFixed">#211534</color> <!-- 固定第三颜色上的文字颜色 -->
+    <color name="md_theme_tertiaryFixedDim">#D1BFE7</color> <!-- 变暗的固定第三颜色 -->
+    <color name="md_theme_onTertiaryFixedVariant">#4E4162</color> <!-- 固定第三颜色的变体上的文字颜色 -->
+    <color name="md_theme_tertiary_mediumContrast">#4A3D5E</color> <!-- 中等对比度的第三颜色 -->
+    <color name="md_theme_tertiary_highContrast">#281C3B</color> <!-- 高对比度的第三颜色 -->
+
+    <!-- 错误状态颜色 (Error Colors) -->
+    <color name="md_theme_error">#BA1A1A</color> <!-- 错误状态颜色 -->
+    <color name="md_theme_onError">#FFFFFF</color> <!-- 错误状态颜色上的文字颜色 -->
+    <color name="md_theme_errorContainer">#FFDAD6</color> <!-- 错误状态的容器背景 -->
+    <color name="md_theme_onErrorContainer">#410002</color> <!-- 错误状态容器中的文字颜色 -->
+    <color name="md_theme_error_mediumContrast">#8C0009</color> <!-- 中等对比度的错误状态颜色 -->
+    <color name="md_theme_error_highContrast">#4E0002</color> <!-- 高对比度的错误状态颜色 -->
+
+    <!-- 背景和表面颜色 (Background and Surface Colors) -->
+    <color name="md_theme_background">#F0F7FF</color> <!-- 背景颜色 -->
+    <color name="md_theme_onBackground">#181C20</color> <!-- 背景上的文字颜色 -->
+    <color name="md_theme_surface">#F7F9FF</color> <!-- 表面颜色 -->
+    <color name="md_theme_onSurface">#181C20</color> <!-- 表面上的文字颜色 -->
+    <color name="md_theme_surfaceVariant">#DEE3EA</color> <!-- 表面变体颜色 -->
+    <color name="md_theme_onSurfaceVariant">#42474D</color> <!-- 表面变体上的文字颜色 -->
+    <color name="md_theme_surfaceDim">#D7DADF</color> <!-- 浅色表面颜色 -->
+    <color name="md_theme_surfaceBright">#F7F9FF</color> <!-- 亮色表面颜色 -->
+    <color name="md_theme_surfaceContainerLowest">#FFFFFF</color> <!-- 容器最低表面颜色 -->
+    <color name="md_theme_surfaceContainerLow">#F1F4F9</color> <!-- 容器较低表面颜色 -->
+    <color name="md_theme_surfaceContainer">#EBEEF3</color> <!-- 容器表面颜色 -->
+    <color name="md_theme_surfaceContainerHigh">#E6E8EE</color> <!-- 容器较高表面颜色 -->
+    <color name="md_theme_surfaceContainerHighest">#E0E3E8</color> <!-- 容器最高表面颜色 -->
+    <color name="md_theme_inverseSurface">#2D3135</color> <!-- 反向表面颜色 -->
+    <color name="md_theme_inverseOnSurface">#EEF1F6</color> <!-- 反向表面上的文字颜色 -->
+    <color name="md_theme_scrim">#000000</color> <!-- 阴影遮罩颜色 -->
+
+    <!-- 轮廓和其他颜色 (Outline and Other Colors) -->
+    <color name="md_theme_outline">#72787E</color> <!-- 轮廓颜色 -->
+    <color name="md_theme_outlineVariant">#C1C7CE</color> <!-- 轮廓变体颜色 -->
+    <color name="md_theme_inversePrimary">#98CCF9</color> <!-- 反向主要颜色 -->
 
 </resources>

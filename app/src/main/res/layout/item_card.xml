@@ -1,0 +1,85 @@
+<!-- 外层CardView的布局文件，item_card_layout.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 日期和收入支出情况 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <!-- 左边的日期 -->
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10月1日 周五"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- 收入支出信息，右对齐 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- 收入文字 -->
+                <TextView
+                    android:id="@+id/tv_income_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收 "
+                    android:textSize="14sp" />
+
+                <!-- 收入金额，绿色 -->
+                <TextView
+                    android:id="@+id/tv_income_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textColor="@color/money_green"
+                    android:textSize="14sp"
+                    android:layout_marginRight="12dp"/>
+
+                <!-- 支出文字 -->
+                <TextView
+                    android:id="@+id/tv_expense_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 支 "
+                    android:textSize="14sp" />
+
+                <!-- 支出金额，红色 -->
+                <TextView
+                    android:id="@+id/tv_expense_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500"
+                    android:textColor="@color/money_red"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!-- 内部RecyclerView用于显示账单条目 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/inner_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

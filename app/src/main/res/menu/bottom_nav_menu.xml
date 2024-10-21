@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_detail"
+        android:icon="@drawable/list_alt_24px"
+        android:enabled="true"
+        android:title="@string/bottom_nav_1" />
+    <item
+        android:id="@+id/navigation_chart"
+        android:icon="@drawable/insert_chart_24px"
+        android:enabled="true"
+        android:title="@string/bottom_nav_2" />
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/add_24px"
+        android:enabled="true"
+        android:title="@string/bottom_nav_3" />
+    <item
+        android:id="@+id/navigation_ai"
+        android:icon="@drawable/pets_24px"
+        android:enabled="true"
+        android:title="@string/bottom_nav_4" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/face_24px"
+        android:enabled="true"
+        android:title="@string/bottom_nav_5" />
+</menu>

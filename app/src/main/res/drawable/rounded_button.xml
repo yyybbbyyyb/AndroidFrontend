@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_button.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/light_red" /> <!-- 按钮背景颜色 -->
+    <corners android:radius="40dp" /> <!-- 设置圆角半径 -->
+    <padding android:left="12dp" android:top="12dp" android:right="12dp" android:bottom="12dp" />
+</shape>
