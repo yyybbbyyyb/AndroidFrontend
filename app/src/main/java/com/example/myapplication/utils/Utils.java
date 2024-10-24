@@ -12,10 +12,11 @@ public class Utils {
 
     public static void hideKeyboard(View view, Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);  // 收起键盘
+        if (imm != null && view != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);  // 隐藏键盘
         }
     }
+
 
     public static String processAvatarUrl(String avatarUrl) {
         // 替换 localhost 为 10.0.2.2

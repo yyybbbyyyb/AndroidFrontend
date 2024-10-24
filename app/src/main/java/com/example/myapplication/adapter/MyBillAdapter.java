@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,9 +17,30 @@ import java.util.List;
 public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewHolder> {
 
     private List<MyBillData> innerDataList;
+    private OnItemClickListener onItemClickListener;
 
     public MyBillAdapter(List<MyBillData> innerDataList) {
         this.innerDataList = innerDataList;
+    }
+
+    // 用于设置点击事件的接口
+    public interface OnItemClickListener {
+        void onItemClick(MyBillData billData);  // 点击事件
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    // 获取某个位置的数据项
+    public MyBillData getItem(int position) {
+        return innerDataList.get(position);
+    }
+
+    // 删除指定位置的项目
+    public void removeItem(int position) {
+        innerDataList.remove(position);
+        notifyItemRemoved(position);  // 通知 RecyclerView 数据已移除
     }
 
     @Override
@@ -33,17 +55,33 @@ public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewH
 
         // 绑定内层数据
         holder.tvType.setText(billData.getType());
-        holder.tvNote.setText(billData.getNote());
-        holder.tvAmount.setText(String.valueOf(billData.getAmount()));
+        holder.tvNote.setText(billData.getRemark());
 
-        String logo_name = "ledger_" + billData.getLogo();
+        if (billData.getCategory().getInOutType() == 1) {
+            holder.tvAmount.setText("+" + String.valueOf(billData.getAmountShort()));
+        } else {
+            holder.tvAmount.setText("-" + String.valueOf(billData.getAmountShort()));
+        }
 
         // 动态获取图片资源ID并绑定到ImageView
         int resourceId = holder.itemView.getContext().getResources().getIdentifier(
-                logo_name, "drawable", holder.itemView.getContext().getPackageName());
+                billData.getImage(), "drawable", holder.itemView.getContext().getPackageName());
 
         // 设置图片
         holder.imgLogo.setImageResource(resourceId);
+
+        if (billData.getCategory().getInOutType() == 1) {
+            holder.tvAmount.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.money_green));
+        } else {
+            holder.tvAmount.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.money_red));
+        }
+
+        // 设置点击事件
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(billData);
+            }
+        });
     }
 
     @Override

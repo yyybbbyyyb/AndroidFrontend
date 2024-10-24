@@ -24,7 +24,11 @@ public class MyLedgerData {
     }
 
     public String getImage() {
-        return image;
+        return  "ledger_" + image;
+    }
+
+    public int getIconIndex() {
+        return Integer.parseInt(image);
     }
 
     public boolean isDefault() {

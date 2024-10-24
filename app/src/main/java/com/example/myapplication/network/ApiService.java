@@ -4,6 +4,7 @@ import com.example.myapplication.model.ApiModels;
 import com.example.myapplication.model.ApiModels.ApiResponse;
 import com.example.myapplication.model.ApiModels.LoginRequest;
 import com.example.myapplication.model.ApiModels.LoginResponse;
+import com.example.myapplication.model.MyBillData;
 import com.example.myapplication.model.MyLedgerData;
 
 import java.util.List;
@@ -14,11 +15,13 @@ import kotlin.ParameterName;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -57,6 +60,42 @@ public interface ApiService {
     @GET("ledgers/")
     Call<ApiResponse<List<MyLedgerData>>> getLedgers();
 
+    @GET("ledgers/{id}/")
+    Call<ApiResponse<MyLedgerData>> getLedger(@Path("id") String ledgerId);
+
+    @PUT("ledgers/{id}/")
+    Call<ApiResponse<Objects>> updateLedger(@Path("id") String ledgerId, @Body Map<String, String> map);
+
+    @POST("ledgers/")
+    Call<ApiResponse<Objects>> createLedger(@Body Map<String, String> map);
+
+    @DELETE("ledgers/{id}/")
+    Call<ApiResponse<Objects>> deleteLedger(@Path("id") String ledgerId);
+
+
+
+
+    @GET("bills/")
+    Call<ApiResponse<List<MyBillData>>> getBills(@QueryMap() Map<String, String> map);
+
+    @GET("bills/{id}/")
+    Call<ApiResponse<MyBillData>> getBill(@Path("id") String billId);
+
+    @DELETE("bills/{id}/")
+    Call<ApiResponse<Objects>> deleteBill(@Path("id") String billId);
+
+    @POST("bills/")
+    Call<ApiResponse<Objects>> createBill(@Body ApiModels.BillCreateRequest billCreateRequest);
+
+    @PUT("bills/{id}/")
+    Call<ApiResponse<Objects>> updateBill(@Path("id") String billId, @Body ApiModels.BillCreateRequest billCreateRequest);
+
+
+
+
     @GET("monthly-report/")
-    Call<ApiResponse<ApiModels.MonthlyReportResponse>> getMonthlyReport(@QueryMap() Map<String, String> map);
+    Call<ApiResponse<ApiModels.ReportResponse>> getMonthlyReport(@QueryMap() Map<String, String> map);
+
+    @GET("daily-report/")
+    Call<ApiResponse<ApiModels.ReportResponse>> getDailyReport(@QueryMap() Map<String, String> map);
 }

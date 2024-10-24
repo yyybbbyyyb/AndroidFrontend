@@ -39,6 +39,11 @@
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.UserInfoActivity"/>
 
+        <activity android:name=".activity.CreateEditLedgerActivity" />
+        <activity android:name=".activity.CategoryPickerActivity" />
+        <activity android:name=".activity.EditBillActivity" />
+
+
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Logo 图片 -->
+    <!-- 容器背景，设置圆角和阴影效果 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -30,11 +32,11 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="@string/about_us"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +45,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Logo 图片 -->
-    <!-- 容器背景，设置圆角和阴影效果 -->
     <androidx.cardview.widget.CardView
         android:id="@+id/logo_container"
         android:layout_width="120dp"

@@ -1,0 +1,43 @@
+<!-- 内层RecyclerView的账单条目布局，item_bill_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingHorizontal="24dp"
+    android:gravity="center_vertical"
+    android:paddingVertical="8dp"
+    android:layout_marginVertical="4dp">
+
+    <!-- 左侧的Logo -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ledger_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ledger_3"
+        app:civ_border_color="@color/md_theme_primaryFixedDim"
+        app:civ_border_width="2dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="默认账本"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"/>
+
+
+    <ImageView
+        android:id="@+id/btn_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/edit_note_24px"
+
+
+        />
+</LinearLayout>
