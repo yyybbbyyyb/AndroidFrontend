@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +84,22 @@ public class MyBillData {
         private int detail_type;
         private String type;
 
+        //改写判断相等的方法
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Category) {
+                Category category = (Category) obj;
+                return this.inOutType == category.inOutType && this.detail_type == category.detail_type;
+            }
+            return false;
+        }
+
+        //改写hashCode方法
+        @Override
+        public int hashCode() {
+            return inOutType * 100 + detail_type;
+        }
+
         public Category(int inOutType, int detail_type, String type) {
             this.inOutType = inOutType;
             this.detail_type = detail_type;
@@ -90,6 +108,14 @@ public class MyBillData {
 
         public int getInOutType() {
             return inOutType;
+        }
+
+        public int getColor() {
+            if (inOutType == 1) {
+                return INCOME_COLORS[detail_type - 1];
+            } else {
+                return EXPENSE_COLORS[detail_type - 1];
+            }
         }
 
         public int getDetail_type() {
@@ -118,6 +144,54 @@ public class MyBillData {
         public static final String[] INCOME = {
                 "工资", "生活费", "奖金", "理财",
                 "收红包", "外快", "零花钱", "其他"
+        };
+
+        // 收入类别颜色数组 //TODO：这个要设置的好看点
+        public static final int[] INCOME_COLORS = {
+                Color.parseColor("#FFB74D"),  // 工资 - 橙色
+                Color.parseColor("#4FC3F7"),  // 生活费 - 天蓝色
+                Color.parseColor("#81C784"),  // 奖金 - 绿色
+                Color.parseColor("#BA68C8"),  // 理财 - 紫色
+                Color.parseColor("#FF8A65"),  // 收红包 - 浅红色
+                Color.parseColor("#FFD54F"),  // 外快 - 黄色
+                Color.parseColor("#4DB6AC"),  // 零花钱 - 青色
+                Color.parseColor("#DCE775")   // 其他 - 浅绿
+        };
+
+        // 支出类别颜色数组
+        public static final int[] EXPENSE_COLORS = {
+                Color.parseColor("#E57373"),  // 餐饮 - 红色
+                Color.parseColor("#64B5F6"),  // 交通 - 蓝色
+                Color.parseColor("#81C784"),  // 日用品 - 绿色
+                Color.parseColor("#4FC3F7"),  // 购物 - 天蓝色
+                Color.parseColor("#FFB74D"),  // 零食 - 橙色
+                Color.parseColor("#FF8A65"),  // 饮品 - 浅红色
+                Color.parseColor("#BA68C8"),  // 蔬菜 - 紫色
+                Color.parseColor("#FFD54F"),  // 水果 - 黄色
+                Color.parseColor("#4DB6AC"),  // 服饰 - 青色
+                Color.parseColor("#DCE775"),  // 娱乐 - 浅绿
+                Color.parseColor("#FFB74D"),  // 美容 - 橙色
+                Color.parseColor("#64B5F6"),  // 通讯 - 蓝色
+                Color.parseColor("#81C784"),  // 医疗 - 绿色
+                Color.parseColor("#4FC3F7"),  // 学习 - 天蓝色
+                Color.parseColor("#FF8A65"),  // 游戏 - 浅红色
+                Color.parseColor("#BA68C8"),  // 红包 - 紫色
+                Color.parseColor("#FFD54F"),  // 婴用 - 黄色
+                Color.parseColor("#4DB6AC"),  // 酒店 - 青色
+                Color.parseColor("#DCE775"),  // 住房 - 浅绿
+                Color.parseColor("#FFB74D"),  // 转账 - 橙色
+                Color.parseColor("#64B5F6"),  // 社交 - 蓝色
+                Color.parseColor("#81C784"),  // 礼品 - 绿色
+                Color.parseColor("#4FC3F7"),  // 宠物 - 天蓝色
+                Color.parseColor("#FF8A65"),  // 汽车 - 浅红色
+                Color.parseColor("#BA68C8"),  // 数码 - 紫色
+                Color.parseColor("#FFD54F"),  // 书籍 - 黄色
+                Color.parseColor("#4DB6AC"),  // 追星 - 青色
+                Color.parseColor("#DCE775"),  // 办公 - 浅绿
+                Color.parseColor("#FFB74D"),  // 运动 - 橙色
+                Color.parseColor("#64B5F6"),  // 捐赠 - 蓝色
+                Color.parseColor("#81C784"),  // 金融 - 绿色
+                Color.parseColor("#FF8A65")   // 其他 - 浅红色
         };
 
         public static final String[] EXPENSE = {

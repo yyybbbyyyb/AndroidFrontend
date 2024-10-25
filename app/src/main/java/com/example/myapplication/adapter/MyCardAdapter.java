@@ -48,7 +48,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.OuterViewH
         holder.tvExpense.setText(String.valueOf(cardData.getExpense()));
 
         // 内层RecyclerView的适配器
-        MyBillAdapter innerAdapter = new MyBillAdapter(cardData.getBillList());
+        MyBillAdapter innerAdapter = new MyBillAdapter(cardData.getBillList(), false);
         holder.innerRecyclerView.setAdapter(innerAdapter);
         holder.innerRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
 

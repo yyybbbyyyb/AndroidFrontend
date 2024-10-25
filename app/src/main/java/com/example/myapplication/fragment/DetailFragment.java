@@ -34,6 +34,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -259,6 +260,7 @@ public class DetailFragment extends Fragment {
                         for (MyLedgerData ledger : ledgerList) {
                             if (ledger.isDefault()) {
                                 current_ledger = ledger;
+                                sharedPreferences.edit().putString("last_selected_ledger_id", ledger.getId()).apply();
                                 break;
                             }
                         }
@@ -330,7 +332,6 @@ public class DetailFragment extends Fragment {
         map.put("ledger_id", current_ledger.getId());
         map.put("date_after", date_after);
         map.put("date_before", date_before);
-        map.put("ordering", "-date");
 
         Call<ApiModels.ApiResponse<List<MyBillData>>> call = apiService.getBills(map);
 
@@ -369,6 +370,9 @@ public class DetailFragment extends Fragment {
                         cardDataList.add(new MyCardData(date, income, expense, bills));
                     }
 
+                    Collections.sort(cardDataList, (o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
+
                     outerRecyclerView.setAdapter(new MyCardAdapter(cardDataList, DetailFragment.this));
                 } else {
                     Toast.makeText(getContext(), "获取账单信息失败" + response.message(), Toast.LENGTH_SHORT).show();
@@ -389,8 +393,6 @@ public class DetailFragment extends Fragment {
         setCards();
     }
 
-
-    //TODO:后端返回格式
 
     @Override
     public void onResume() {

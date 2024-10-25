@@ -18,10 +18,17 @@ public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewH
 
     private List<MyBillData> innerDataList;
     private OnItemClickListener onItemClickListener;
+    private boolean needDate = false;
 
-    public MyBillAdapter(List<MyBillData> innerDataList) {
+    public MyBillAdapter(List<MyBillData> innerDataList, boolean needDate) {
         this.innerDataList = innerDataList;
+        this.needDate = needDate;
     }
+
+    public void updateData(List<MyBillData> newData) {
+        this.innerDataList = newData;
+    }
+
 
     // 用于设置点击事件的接口
     public interface OnItemClickListener {
@@ -63,6 +70,11 @@ public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewH
             holder.tvAmount.setText("-" + String.valueOf(billData.getAmountShort()));
         }
 
+        if (needDate) {
+            holder.tvDate.setVisibility(View.VISIBLE);
+            holder.tvDate.setText(billData.getDate());
+        }
+
         // 动态获取图片资源ID并绑定到ImageView
         int resourceId = holder.itemView.getContext().getResources().getIdentifier(
                 billData.getImage(), "drawable", holder.itemView.getContext().getPackageName());
@@ -90,7 +102,7 @@ public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewH
     }
 
     public static class InnerViewHolder extends RecyclerView.ViewHolder {
-        TextView tvType, tvNote, tvAmount;
+        TextView tvType, tvNote, tvAmount, tvDate;
         ImageView imgLogo;
 
         public InnerViewHolder(View itemView) {
@@ -99,6 +111,7 @@ public class MyBillAdapter extends RecyclerView.Adapter<MyBillAdapter.InnerViewH
             tvNote = itemView.findViewById(R.id.tv_note);
             tvAmount = itemView.findViewById(R.id.tv_amount);
             imgLogo = itemView.findViewById(R.id.img_logo);
+            tvDate = itemView.findViewById(R.id.date);
         }
     }
 

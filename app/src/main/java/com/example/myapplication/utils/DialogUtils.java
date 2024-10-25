@@ -138,30 +138,5 @@ public class DialogUtils {
         dialog.setOnDismissListener(d -> onCancel.run());
     }
 
-    // 展示创建订单对话框
-    public static void showCreateBillDialog(Activity activity) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        LayoutInflater inflater = activity.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.fragment_account, null);
-        builder.setView(dialogView);
-
-        // 创建并显示对话框
-        AlertDialog dialog = builder.create();
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        }
-        dialog.show();
-
-        // 调整对话框的宽度
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setLayout((int) (activity.getResources().getDisplayMetrics().widthPixels * 0.8),
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-
-
-
-
-
-    }
 
 }

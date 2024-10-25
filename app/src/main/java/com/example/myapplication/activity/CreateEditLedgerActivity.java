@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CreateEditLedgerActivity extends AppCompatActivity {
@@ -82,7 +83,7 @@ public class CreateEditLedgerActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ApiModels.ApiResponse<Objects>> call, retrofit2.Response<ApiModels.ApiResponse<Objects>> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(CreateEditLedgerActivity.this, "创建账单成功", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateEditLedgerActivity.this, "修改账本成功", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
                             Toast.makeText(CreateEditLedgerActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
@@ -107,16 +108,7 @@ public class CreateEditLedgerActivity extends AppCompatActivity {
                         Toast.makeText(CreateEditLedgerActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        try {
-                            String error = response.errorBody().string();
-                            Gson gson = new Gson();
-                            ApiModels.ApiResponse<Objects> apiResponse = gson.fromJson(error, ApiModels.ApiResponse.class);
-                            String errors = (String) apiResponse.getErrors();
-                            Toast.makeText(CreateEditLedgerActivity.this, "删除失败: " + errors, Toast.LENGTH_LONG).show();
-
-                        } catch (Exception e) {
-                            Toast.makeText(CreateEditLedgerActivity.this, "删除失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(CreateEditLedgerActivity.this, "删除失败: 不能删除默认账本" , Toast.LENGTH_LONG).show();
                     }
                 }
 

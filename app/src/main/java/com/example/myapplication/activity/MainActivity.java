@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.fragment.AccountFragment;
+import com.example.myapplication.fragment.ChartFragment;
 import com.example.myapplication.fragment.DetailFragment;
 import com.example.myapplication.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.navigation_detail) {
                     selectedFragment = new DetailFragment();
                 }
-//                else if (item.getItemId() == R.id.navigation_chart) {
-//                    selectedFragment = new ChartFragment(); }
+                else if (item.getItemId() == R.id.navigation_chart) {
+                    selectedFragment = new ChartFragment(); }
                  else if (item.getItemId() == R.id.navigation_account) {
                     selectedFragment = new AccountFragment();
                 }//else if (item.getItemId() == R.id.navigation_ai) {
