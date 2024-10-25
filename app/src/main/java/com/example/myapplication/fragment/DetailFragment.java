@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activity.BudgetActivity;
 import com.example.myapplication.activity.CreateEditLedgerActivity;
 import com.example.myapplication.adapter.MyCardAdapter;
 import com.example.myapplication.adapter.MyLedgerAdapter;
@@ -71,8 +72,7 @@ public class DetailFragment extends Fragment {
 
     RecyclerView outerRecyclerView;
 
-    public DetailFragment() {
-    }
+    public DetailFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,7 +86,7 @@ public class DetailFragment extends Fragment {
 
         // Ledger设置完成后，再调用setMonthlyTable
         setLedger(() -> {
-            setMonthlyTable();
+            setMonthlyTable(this::setBudget);
             initDropdownIcon();
             setCards();
         });
@@ -225,6 +225,10 @@ public class DetailFragment extends Fragment {
         void onLedgerSet();
     }
 
+    interface setMonthlyTableCallback {
+        void onMonthlyTableSet();
+    }
+
     private void setLedger(LedgerCallback callback) {
         ApiService apiService = ApiClient.getClient(getActivity().getApplicationContext()).create(ApiService.class);
         Call<ApiModels.ApiResponse<List<MyLedgerData>>> call = apiService.getLedgers();
@@ -286,7 +290,7 @@ public class DetailFragment extends Fragment {
         });
     }
 
-    private void setMonthlyTable() {
+    private void setMonthlyTable(setMonthlyTableCallback callback) {
         ApiService apiService = ApiClient.getClient(getActivity().getApplicationContext()).create(ApiService.class);
         Map<String, String> map = Map.of("year", String.valueOf(currentDate.get(Calendar.YEAR)),
                 "month", String.valueOf(currentDate.get(Calendar.MONTH) + 1),
@@ -304,6 +308,8 @@ public class DetailFragment extends Fragment {
                     double calc_balance = Double.parseDouble(totalIncome.getText().toString()) - Double.parseDouble(totalExpense.getText().toString());
                     calc_balance = Math.round(calc_balance * 100) / 100.0;
                     balance.setText(String.valueOf(calc_balance));
+
+                    callback.onMonthlyTableSet();
                 } else {
                     Toast.makeText(getContext(), "获取月度报表失败" + response.message(), Toast.LENGTH_SHORT).show();
                 }
@@ -389,10 +395,72 @@ public class DetailFragment extends Fragment {
     }
 
     public void refresh() {
-        setMonthlyTable();
+        setMonthlyTable(this::setBudget);
         setCards();
     }
 
+    private void setBudget() {
+        // 如果不是当前月份
+        if (currentDate.get(Calendar.YEAR) != Calendar.getInstance().get(Calendar.YEAR) ||
+                currentDate.get(Calendar.MONTH) != Calendar.getInstance().get(Calendar.MONTH)) {
+            budget_status.setText("往事暗沉不可追，来日之路光明灿烂，预算仅支持当月");
+            progress_percentage.setText("0%");
+            budgetProgress.setProgress(0);
+            return;
+        }
+
+        ApiService apiService = ApiClient.getClient(getActivity().getApplicationContext()).create(ApiService.class);
+        Map<String, String> map = Map.of("year", String.valueOf(currentDate.get(Calendar.YEAR)),
+                "month", String.valueOf(currentDate.get(Calendar.MONTH) + 1),
+                "ledger_id", current_ledger.getId());
+        Call<ApiModels.ApiResponse<ApiModels.TotalBudgetResponse>> call = apiService.getTotalBudget(map);
+        call.enqueue(new retrofit2.Callback<ApiModels.ApiResponse<ApiModels.TotalBudgetResponse>>() {
+            @Override
+            public void onResponse(Call<ApiModels.ApiResponse<ApiModels.TotalBudgetResponse>> call, Response<ApiModels.ApiResponse<ApiModels.TotalBudgetResponse>> response) {
+                if (response.isSuccessful()) {
+                    ApiModels.TotalBudgetResponse data = response.body().getData();
+                    double totalBudget = data.getTotalBudget();
+                    double expense = totalExpense.getText().toString().equals("") ? 0 : Double.parseDouble(totalExpense.getText().toString());
+
+                    if (totalBudget == 0) {
+                        budget_status.setText("点击设置预算");
+                        progress_percentage.setText("0%");
+                        budgetProgress.setProgress(0);
+                        return;
+                    }
+
+                    double percentage = expense / totalBudget * 100;
+
+                    progress_percentage.setText(String.format("%.0f", percentage) + "%");
+
+                    if (percentage > 100) {
+                        budgetProgress.setProgress(100);
+                    } else {
+                        budgetProgress.setProgress((int) percentage);
+                    }
+                    budget_status.setText("剩余" + String.format("%.2f", totalBudget - expense) + " | " +
+                            "剩余日均" + String.format("%.2f", (totalBudget - expense) /
+                            (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH) -
+                                    Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1)));
+                } else {
+                    Toast.makeText(getContext(), "获取预算信息失败" + response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiModels.ApiResponse<ApiModels.TotalBudgetResponse>> call, Throwable t) {
+                Toast.makeText(getContext(), "获取预算信息失败" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        budget_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), BudgetActivity.class);
+            intent.putExtra("ledger_id", Integer.valueOf(current_ledger.getId()));
+            intent.putExtra("total_expense", Double.valueOf(totalExpense.getText().toString()));
+            startActivity(intent);
+        });
+
+    }
 
     @Override
     public void onResume() {
@@ -403,7 +471,7 @@ public class DetailFragment extends Fragment {
 
         // Ledger设置完成后，再调用setMonthlyTable
         setLedger(() -> {
-            setMonthlyTable();
+            setMonthlyTable(this::setBudget);
             initDropdownIcon();
             setCards();
         });

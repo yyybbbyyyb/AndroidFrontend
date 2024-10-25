@@ -9,6 +9,7 @@
     <color name="money_red">#ffff4444</color>
     <color name="money_green">#ff99cc00</color>
     <color name="light_green">#32CD32</color>
+    <color name="light_orange">#FFA500</color>
 
     <!-- 主色调 (Primary Colors) -->
     <color name="md_theme_primary">#2A638A</color> <!-- 主要颜色 -->

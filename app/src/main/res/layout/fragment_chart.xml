@@ -29,7 +29,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="160dp"
+                        android:layout_width="200dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="16dp"
                         android:elevation="6dp"
@@ -73,9 +73,9 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="160dp"
+                        android:layout_width="120dp"
                         android:layout_height="60dp"
-                        android:layout_marginLeft="59dp"
+                        android:layout_marginLeft="55dp"
                         android:elevation="6dp"
                         app:cardBackgroundColor="@color/md_theme_primaryContainer"
                         app:cardCornerRadius="16dp">
@@ -91,14 +91,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="收入"
                                 android:textStyle="bold"
-                                android:textSize="24sp" />
+                                android:textSize="20sp" />
 
                             <ImageView
                                 android:id="@+id/change_circle"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="8dp"
                                 android:src="@drawable/change_circle_24px" />
 
 

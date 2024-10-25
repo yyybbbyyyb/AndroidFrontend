@@ -5,6 +5,7 @@ import com.example.myapplication.model.ApiModels.ApiResponse;
 import com.example.myapplication.model.ApiModels.LoginRequest;
 import com.example.myapplication.model.ApiModels.LoginResponse;
 import com.example.myapplication.model.MyBillData;
+import com.example.myapplication.model.MyBudgetData;
 import com.example.myapplication.model.MyLedgerData;
 
 import java.util.List;
@@ -54,8 +55,7 @@ public interface ApiService {
     @POST("logout/")
     Call<ApiResponse<Objects>> logout(@Body Map<String, String> map);
 
-
-
+    // ----------------------------
 
     @GET("ledgers/")
     Call<ApiResponse<List<MyLedgerData>>> getLedgers();
@@ -72,8 +72,7 @@ public interface ApiService {
     @DELETE("ledgers/{id}/")
     Call<ApiResponse<Objects>> deleteLedger(@Path("id") String ledgerId);
 
-
-
+    // ----------------------------
 
     @GET("bills/")
     Call<ApiResponse<List<MyBillData>>> getBills(@QueryMap() Map<String, String> map);
@@ -90,12 +89,35 @@ public interface ApiService {
     @PUT("bills/{id}/")
     Call<ApiResponse<Objects>> updateBill(@Path("id") String billId, @Body ApiModels.BillCreateRequest billCreateRequest);
 
+    // ----------------------------
 
+    @GET("budgets/")
+    Call<ApiResponse<List<MyBudgetData>>> getBudgets(@QueryMap() Map<String, String> map);
 
+    @GET("budgets/{id}/")
+    Call<ApiResponse<MyBudgetData>> getBudget(@Path("id") String budgetId);
+
+    @POST("budgets/")
+    Call<ApiResponse<Objects>> createBudget(@Body ApiModels.BudgetCreateRequest budgetCreateRequest);
+
+    @PUT("budgets/{id}/")
+    Call<ApiResponse<Objects>> updateBudget(@Path("id") String budgetId, @Body ApiModels.BudgetCreateRequest budgetCreateRequest);
+
+    @DELETE("budgets/{id}/")
+    Call<ApiResponse<Objects>> deleteBudget(@Path("id") String budgetId);
+
+    // ----------------------------
 
     @GET("monthly-report/")
     Call<ApiResponse<ApiModels.ReportResponse>> getMonthlyReport(@QueryMap() Map<String, String> map);
 
     @GET("daily-report/")
     Call<ApiResponse<ApiModels.ReportResponse>> getDailyReport(@QueryMap() Map<String, String> map);
+
+    @GET("total-budget/")
+    Call<ApiResponse<ApiModels.TotalBudgetResponse>> getTotalBudget(@QueryMap() Map<String, String> map);
+
+    @GET("total-expense-by-category/")
+    Call<ApiResponse<ApiModels.TotalExpenseByCategoryResponse>> getTotalExpenseByCategory(@QueryMap() Map<String, String> map);
+
 }

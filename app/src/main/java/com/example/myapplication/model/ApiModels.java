@@ -38,6 +38,33 @@ public class ApiModels {
         }
     }
 
+    public static class RequestCategory {
+        private String inOutType;
+        private String detail_type;
+
+        public RequestCategory(String inOutType, String detail_type) {
+            this.inOutType = inOutType;
+            this.detail_type = detail_type;
+        }
+
+        // Getters and Setters
+        public String getInOutType() {
+            return inOutType;
+        }
+
+        public void setInOutType(String inOutType) {
+            this.inOutType = inOutType;
+        }
+
+        public String getDetailType() {
+            return detail_type;
+        }
+
+        public void setDetailType(String detail_type) {
+            this.detail_type = detail_type;
+        }
+    }
+
     public static class BillCreateRequest {
         private int ledger;
         private RequestCategory category;
@@ -53,72 +80,21 @@ public class ApiModels {
             this.date = date;
         }
 
-        // Getters and Setters
-        public int getLedger() {
-            return ledger;
-        }
+    }
 
-        public void setLedger(int ledger) {
+    public static class BudgetCreateRequest {
+        private int ledger;
+        private String amount;
+        private String month;
+        private String year;
+        private RequestCategory category;
+
+        public BudgetCreateRequest(int ledger, String amount, String month, String year, String inOutType, String detailType) {
             this.ledger = ledger;
-        }
-
-        public RequestCategory getCategory() {
-            return category;
-        }
-
-        public void setCategory(RequestCategory category) {
-            this.category = category;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
             this.amount = amount;
-        }
-
-        public String getRemark() {
-            return remark;
-        }
-
-        public void setRemark(String remark) {
-            this.remark = remark;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        class RequestCategory {
-            private String inOutType;
-            private String detail_type;
-
-            public RequestCategory(String inOutType, String detail_type) {
-                this.inOutType = inOutType;
-                this.detail_type = detail_type;
-            }
-
-            // Getters and Setters
-            public String getInOutType() {
-                return inOutType;
-            }
-
-            public void setInOutType(String inOutType) {
-                this.inOutType = inOutType;
-            }
-
-            public String getDetailType() {
-                return detail_type;
-            }
-
-            public void setDetailType(String detail_type) {
-                this.detail_type = detail_type;
-            }
+            this.month = month;
+            this.year = year;
+            this.category = new RequestCategory(inOutType, detailType);
         }
     }
 
@@ -182,6 +158,22 @@ public class ApiModels {
 
         public String getExpense() {
             return expense;
+        }
+    }
+
+    public static class TotalBudgetResponse {
+        private String total_budget;
+        // getters and setters
+        public Double getTotalBudget() {
+            return Double.parseDouble(total_budget);
+        }
+    }
+
+    public static class TotalExpenseByCategoryResponse {
+        private String total_expense;
+
+        public Double getTotalExpense() {
+            return Double.parseDouble(total_expense);
         }
     }
 

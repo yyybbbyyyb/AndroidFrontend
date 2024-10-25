@@ -14,10 +14,10 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.List;
 
-public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAdapter.cateViewHolder> {
+public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAdapter.CateViewHolder> {
 
     private List<MyBillCategoryData> dataList;
-    private MyBillCategoryAdapter.OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public MyBillCategoryAdapter(List<MyBillCategoryData> dataList) {
         this.dataList = dataList;
@@ -27,7 +27,7 @@ public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAd
         void onItemClick(MyBillCategoryData billCategoryData);
     }
 
-    public void setOnItemClickListener(MyBillCategoryAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
@@ -37,13 +37,13 @@ public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAd
     }
 
     @Override
-    public cateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bill_category, parent, false);
-        return new cateViewHolder(view);
+        return new CateViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(cateViewHolder holder, int position) {
+    public void onBindViewHolder(CateViewHolder holder, int position) {
         MyBillCategoryData billCategoryData = dataList.get(position);
 
         holder.tvCategory.setText(billCategoryData.getCategory().getType());
@@ -55,13 +55,12 @@ public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAd
         holder.ivCategory.setImageResource(resourceId);
 
         if (billCategoryData.getCategory().getInOutType() == 1) {
-            holder.tvTotalMoney.setText(String.valueOf(billCategoryData.getTotalMoney()));
+            holder.tvTotalMoney.setText("+" + billCategoryData.getTotalMoney());
             holder.tvTotalMoney.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.money_green));
         } else {
-            holder.tvTotalMoney.setText(String.valueOf(billCategoryData.getTotalMoney()));
+            holder.tvTotalMoney.setText("-" + billCategoryData.getTotalMoney());
             holder.tvTotalMoney.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.money_red));
         }
-        holder.tvTotalMoney.setText(String.valueOf(billCategoryData.getTotalMoney()));
 
         holder.tvPercent.setText(String.valueOf(billCategoryData.getPercent()) + "%");
 
@@ -89,7 +88,7 @@ public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAd
         return dataList.size();
     }
 
-    public static class cateViewHolder extends RecyclerView.ViewHolder {
+    public static class CateViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivCategory;
         private TextView tvCategory;
         private TextView tvTotalMoney;
@@ -97,7 +96,7 @@ public class MyBillCategoryAdapter extends RecyclerView.Adapter<MyBillCategoryAd
         private LinearProgressIndicator progressIndicator;
         private View divider;
 
-        public cateViewHolder(View itemView) {
+        public CateViewHolder(View itemView) {
             super(itemView);
             ivCategory = itemView.findViewById(R.id.img_logo);
             tvCategory = itemView.findViewById(R.id.tv_type);

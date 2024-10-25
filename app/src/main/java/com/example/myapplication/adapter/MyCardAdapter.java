@@ -76,7 +76,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.OuterViewH
                 int billId = billData.getId();  // 获取账单的id
 
                 // 显示删除确认对话框，并传递id
-                DialogUtils.showDeleteConfirmDialog((Activity) holder.itemView.getContext(), billId, () -> {
+                DialogUtils.showDeleteConfirmDialog((Activity) holder.itemView.getContext(), billId, 0, () -> {
                     // 删除成功后刷新UI
                     innerAdapter.removeItem(viewHolder.getAdapterPosition());
                     fragment.refresh();  // 调用 DetailFragment 的 refresh 方法

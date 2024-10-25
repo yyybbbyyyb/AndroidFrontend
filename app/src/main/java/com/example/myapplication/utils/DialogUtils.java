@@ -89,7 +89,7 @@ public class DialogUtils {
     }
 
     // 展示删除订单对话框
-    public static void showDeleteConfirmDialog(Activity activity, int id, Runnable onDeleteConfirmed, Runnable onCancel) {
+    public static void showDeleteConfirmDialog(Activity activity, int id, int billOrBudget, Runnable onDeleteConfirmed, Runnable onCancel) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_confirm_delete, null);
@@ -113,7 +113,14 @@ public class DialogUtils {
             // 执行删除操作
             ApiService apiService = ApiClient.getClient(activity.getApplicationContext()).create(ApiService.class);
 
-            Call<ApiModels.ApiResponse<Objects>> call = apiService.deleteBill(String.valueOf(id));
+            Call<ApiModels.ApiResponse<Objects>> call;
+
+            if (billOrBudget == 1) {
+                call = apiService.deleteBudget(String.valueOf(id));
+            } else {
+                call = apiService.deleteBill(String.valueOf(id));
+            }
+
             call.enqueue(new Callback<ApiModels.ApiResponse<Objects>>() {
                 @Override
                 public void onResponse(Call<ApiModels.ApiResponse<Objects>> call, Response<ApiModels.ApiResponse<Objects>> response) {
