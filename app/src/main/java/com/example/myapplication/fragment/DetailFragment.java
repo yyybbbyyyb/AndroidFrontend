@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activity.BudgetActivity;
+import com.example.myapplication.activity.CalendarActivity;
 import com.example.myapplication.activity.CreateEditLedgerActivity;
 import com.example.myapplication.adapter.MyCardAdapter;
 import com.example.myapplication.adapter.MyLedgerAdapter;
@@ -50,6 +51,7 @@ public class DetailFragment extends Fragment {
     private MyLedgerData current_ledger;
     private Calendar currentDate;
     private List<MyCardData> cardDataList;
+    private boolean shouldRefresh = true;
 
     // View
     CircleImageView ledgerIcon;
@@ -320,6 +322,15 @@ public class DetailFragment extends Fragment {
                 Toast.makeText(getContext(), "获取月度报表失败" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        calendar_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CalendarActivity.class);
+            intent.putExtra("ledger_id", Integer.valueOf(current_ledger.getId()));
+            intent.putExtra("year", currentDate.get(Calendar.YEAR));
+            intent.putExtra("month", currentDate.get(Calendar.MONTH) + 1);
+            shouldRefresh = false;
+            startActivity(intent);
+        });
     }
 
     private void setCards() {
@@ -465,6 +476,10 @@ public class DetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (!shouldRefresh) {
+            shouldRefresh = true;
+            return;
+        }
 
         initDate();
         initDateBtn();

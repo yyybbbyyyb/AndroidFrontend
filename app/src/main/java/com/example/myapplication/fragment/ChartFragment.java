@@ -425,7 +425,6 @@ public class ChartFragment extends Fragment {
         pieChart.setHoleColor(Color.WHITE); // 设置洞的颜色
 
 
-
         pieChart.setCenterTextSize(20f); // 设置中心文本大小
         pieChart.setCenterTextTypeface(Typeface.DEFAULT_BOLD); // 设置中心文本加粗
 
@@ -451,6 +450,8 @@ public class ChartFragment extends Fragment {
         pieChart.setRotationEnabled(true); // 启用旋转
         pieChart.setHighlightPerTapEnabled(true); // 启用点击高亮
 
+        pieChart.setExtraOffsets(8, 8, 8, 8); // 设置上下左右的偏移量（单位为像素）
+
         pieChart.invalidate(); // 刷新图表
 
 
@@ -470,7 +471,7 @@ public class ChartFragment extends Fragment {
             @Override
             public void onItemClick(MyBillCategoryData billCategoryData) {
                 Intent intent = new Intent(getActivity(), BillInfoActivity.class);
-                intent.putExtra("inOut", 1);
+                intent.putExtra("inOut", inOut);
                 intent.putExtra("ledger_id", ledger_id);
                 intent.putExtra("date_before", currentDate.get(Calendar.YEAR) + "-" + (currentDate.get(Calendar.MONTH) + 1) + "-" + currentDate.getActualMaximum(Calendar.DAY_OF_MONTH));
                 intent.putExtra("date_after", currentDate.get(Calendar.YEAR) + "-" + (currentDate.get(Calendar.MONTH) + 1) + "-01");

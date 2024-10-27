@@ -17,12 +17,20 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.AboutUsActivity;
 import com.example.myapplication.activity.UserInfoActivity;
 import com.example.myapplication.model.ApiModels;
+import com.example.myapplication.model.MyBillData;
 import com.example.myapplication.network.ApiClient;
 import com.example.myapplication.network.ApiService;
 import com.example.myapplication.utils.DialogUtils;
+import com.example.myapplication.utils.ExcelUtil;
 import com.squareup.picasso.Picasso;
 import com.example.myapplication.utils.Utils;
 
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +41,8 @@ public class ProfileFragment extends Fragment {
     ImageView avatar;
     TextView username;
     TextView info;
+
+    List<MyBillData> bills;
 
     public ProfileFragment() {}
 
@@ -75,6 +85,24 @@ public class ProfileFragment extends Fragment {
             DialogUtils.showRatingDialog(getActivity());
         });
 
+        // 数据导出点击事件
+        LinearLayout exportData = view.findViewById(R.id.export_data);
+        exportData.setOnClickListener(v -> {
+            exportData();
+        });
+
+        // 支出报告点击事件
+        LinearLayout report = view.findViewById(R.id.expense_report);
+        report.setOnClickListener(v -> {
+            ExpenseReportFragment fragment = new ExpenseReportFragment();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+
+            fragment.setOnDataLoadedListener(() -> fragment.exportViewToPDF());
+        });
+
         return view;
     }
 
@@ -84,7 +112,6 @@ public class ProfileFragment extends Fragment {
         // 调用获取用户信息的逻辑
         getUserInfo();
     }
-
 
     private void getUserInfo() {
         ApiService apiService = ApiClient.getClient(getActivity().getApplicationContext()).create(ApiService.class);
@@ -97,7 +124,7 @@ public class ProfileFragment extends Fragment {
                     ApiModels.UserInfoResponse userInfoResponse = response.body().getData();
                     username.setText(userInfoResponse.getUsername());
                     // TODO:增加记账笔数
-                    info.setText("已记账" + userInfoResponse.getUsedDays() + "天");
+                    info.setText("已记账 " + userInfoResponse.getUsedDays() + " 天" + "，共记账 " + userInfoResponse.getBillCount() + " 笔");
                     Picasso.get()
                             .load(Utils.processAvatarUrl(userInfoResponse.getAvatar()))
                             .into(avatar, new com.squareup.picasso.Callback() {
@@ -123,4 +150,45 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
+    private void exportData() {
+        ApiService apiService = ApiClient.getClient(getActivity().getApplicationContext()).create(ApiService.class);
+        Map<String, String> map = new HashMap<>();
+        map.put("ordering", "-date");
+        Call<ApiModels.ApiResponse<List<MyBillData>>> call = apiService.getBills(map);
+        call.enqueue(new Callback<ApiModels.ApiResponse<List<MyBillData>>>() {
+            @Override
+            public void onResponse(Call<ApiModels.ApiResponse<List<MyBillData>>> call, Response<ApiModels.ApiResponse<List<MyBillData>>> response) {
+                if (response.isSuccessful()) {
+                    List<MyBillData> bills = response.body().getData();
+                    String[] title = {"账本", "类型", "金额", "备注", "日期"};
+                    String fileName = "xiaoYaoExportData" + ".xls";
+                    List<ArrayList<String>> recordList = new ArrayList<>();
+
+                    for (MyBillData bill : bills) {
+                        ArrayList<String> record = new ArrayList<>();
+                        record.add(bill.getLedger_name());
+                        record.add(bill.getCategory().getType());
+                        record.add(String.valueOf(bill.getAmountShort()));
+                        record.add(bill.getRemark());
+                        record.add(bill.getDate());
+                        recordList.add(record);
+                    }
+
+                    ExcelUtil.initExcel(fileName, "账单数据", title);
+                    ExcelUtil.writeObjListToExcel(recordList, fileName, getContext());
+
+
+                } else {
+                    Toast.makeText(getActivity(), "请求失败: " + response.message(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiModels.ApiResponse<List<MyBillData>>> call, Throwable t) {
+                Toast.makeText(getActivity(), "请求失败: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

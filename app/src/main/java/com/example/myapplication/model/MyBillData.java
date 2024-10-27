@@ -16,6 +16,7 @@ public class MyBillData {
     private String date;
     private String create_time;
     private Category category;
+    private String ledger_name;
 
     public MyBillData(int id, int ledger, double amount, String remark, String date, String created_time, Category category) {
         this.id = id;
@@ -65,6 +66,10 @@ public class MyBillData {
         } else {
             return null;
         }
+    }
+
+    public String getLedger_name() {
+        return ledger_name;
     }
 
     public Category getCategory() {

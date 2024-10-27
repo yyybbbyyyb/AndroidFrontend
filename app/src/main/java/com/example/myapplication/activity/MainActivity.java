@@ -37,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (item.getItemId() == R.id.navigation_detail) {
                     selectedFragment = new DetailFragment();
-                }
-                else if (item.getItemId() == R.id.navigation_chart) {
-                    selectedFragment = new ChartFragment(); }
-                 else if (item.getItemId() == R.id.navigation_account) {
+                } else if (item.getItemId() == R.id.navigation_chart) {
+                    selectedFragment = new ChartFragment();
+                } else if (item.getItemId() == R.id.navigation_account) {
                     selectedFragment = new AccountFragment();
-                }//else if (item.getItemId() == R.id.navigation_ai) {
+                } else if (item.getItemId() == R.id.navigation_ai) {
 //                    selectedFragment = new AIFragment();
-//                }
-                else if (item.getItemId() == R.id.navigation_profile) {
+                } else if (item.getItemId() == R.id.navigation_profile) {
                     selectedFragment = new ProfileFragment();
                 }
 

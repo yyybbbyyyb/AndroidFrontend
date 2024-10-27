@@ -112,7 +112,7 @@ public interface ApiService {
     Call<ApiResponse<ApiModels.ReportResponse>> getMonthlyReport(@QueryMap() Map<String, String> map);
 
     @GET("daily-report/")
-    Call<ApiResponse<ApiModels.ReportResponse>> getDailyReport(@QueryMap() Map<String, String> map);
+    Call<ApiResponse<List<ApiModels.DailyReportResponse>>> getDailyReport(@QueryMap() Map<String, String> map);
 
     @GET("total-budget/")
     Call<ApiResponse<ApiModels.TotalBudgetResponse>> getTotalBudget(@QueryMap() Map<String, String> map);

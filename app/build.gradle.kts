@@ -25,15 +25,15 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
-
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -41,7 +41,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
 
     // Retrofit 和 Gson 依赖
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -59,4 +58,10 @@ dependencies {
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.0.3")
 
+    implementation("net.sourceforge.jexcelapi:jxl:2.6.12")
+
+    implementation("com.kizitonwose.calendar:view:2.5.0")
+
+    // 配置 desugaring 库
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

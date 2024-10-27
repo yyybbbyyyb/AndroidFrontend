@@ -120,6 +120,7 @@ public class ApiModels {
         private String phone;
         private String gender;
         private String used_days;
+        private String bill_count;
 
         // getters and setters
         public String getUsername() {
@@ -144,6 +145,10 @@ public class ApiModels {
 
         public String getUsedDays() {
             return used_days;
+        }
+
+        public String getBillCount() {
+            return bill_count;
         }
     }
 
@@ -174,6 +179,24 @@ public class ApiModels {
 
         public Double getTotalExpense() {
             return Double.parseDouble(total_expense);
+        }
+    }
+
+    public static class DailyReportResponse {
+        private int day;
+        private Double income;
+        private Double expense;
+
+        public int getDay() {
+            return day;
+        }
+
+        public Double getIncome() {
+            return Double.parseDouble(String.format("%.2f", income));
+        }
+
+        public Double getExpense() {
+            return Double.parseDouble(String.format("%.2f", expense));
         }
     }
 

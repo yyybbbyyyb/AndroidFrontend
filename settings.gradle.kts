@@ -3,7 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven ("https://jitpack.io")  // 确保 JitPack 仓库也在这里
+        maven ("https://jitpack.io")
     }
 }
 

@@ -116,7 +116,8 @@
                 android:id="@+id/card_data_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
                 android:elevation="6dp"
                 app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="16dp"
@@ -330,7 +331,7 @@
                 android:id="@+id/card_pie_chart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
                 android:elevation="6dp"
                 app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="16dp"
@@ -348,7 +349,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:fontFamily="@font/noto_black"
-                        android:text="支出分类详情"
+                        android:text="开销分类详情"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
