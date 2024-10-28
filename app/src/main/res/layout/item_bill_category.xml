@@ -68,8 +68,7 @@
                 android:layout_marginTop="8dp"
                 android:max="100"
                 android:progress="74"
-                app:indicatorColor="@color/md_theme_primary"
-                app:trackColor="@color/md_theme_primaryContainer" />
+                app:trackColor="#F0F0F0" />
         </LinearLayout>
     </LinearLayout>
 

@@ -24,14 +24,14 @@ public class AboutUsActivity extends AppCompatActivity {
         LinearLayout userAgreement = findViewById(R.id.user_agreement);
         userAgreement.setOnClickListener(v -> {
             Intent intent = new Intent(AboutUsActivity.this, WebViewActivity.class);
-            intent.putExtra("url", "https://www.example.com/user-agreement");
+            intent.putExtra("url", "https://yyybbbyyyb.github.io");
             startActivity(intent);
         });
 
         LinearLayout privacyPolicy = findViewById(R.id.privacy_policy);
         privacyPolicy.setOnClickListener(v -> {
             Intent intent = new Intent(AboutUsActivity.this, WebViewActivity.class);
-            intent.putExtra("url", "https://www.example.com/privacy-policy");
+            intent.putExtra("url", "https://github.com/yyybbbyyyb");
             startActivity(intent);
         });
     }

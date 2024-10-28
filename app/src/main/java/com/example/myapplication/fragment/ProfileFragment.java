@@ -22,6 +22,7 @@ import com.example.myapplication.network.ApiClient;
 import com.example.myapplication.network.ApiService;
 import com.example.myapplication.utils.DialogUtils;
 import com.example.myapplication.utils.ExcelUtil;
+import com.example.myapplication.utils.SnackbarUtils;
 import com.squareup.picasso.Picasso;
 import com.example.myapplication.utils.Utils;
 
@@ -103,6 +104,32 @@ public class ProfileFragment extends Fragment {
             fragment.setOnDataLoadedListener(() -> fragment.exportViewToPDF());
         });
 
+        LinearLayout ledger = view.findViewById(R.id.bill_recognition);
+        ledger.setOnClickListener(v -> {
+            SnackbarUtils.showCustomSnackbar(view,
+                    "这学期太忙啦，功能暂未开放",
+                    3000,
+                    getResources().getColor(R.color.md_theme_tertiaryFixedDim),
+                    getResources().getColor(R.color.white),
+                    16f,
+                    false,
+                    false,
+                    true);
+        });
+
+        LinearLayout budget = view.findViewById(R.id.financial_advice);
+        budget.setOnClickListener(v -> {
+            SnackbarUtils.showCustomSnackbar(view,
+                    "全栈开发太累啦，功能暂未开放",
+                    3000,
+                    getResources().getColor(R.color.md_theme_inversePrimary),
+                    getResources().getColor(R.color.white),
+                    16f,
+                    false,
+                    false,
+                    true);
+        });
+
         return view;
     }
 
@@ -123,7 +150,6 @@ public class ProfileFragment extends Fragment {
                 if (response.isSuccessful()) {
                     ApiModels.UserInfoResponse userInfoResponse = response.body().getData();
                     username.setText(userInfoResponse.getUsername());
-                    // TODO:增加记账笔数
                     info.setText("已记账 " + userInfoResponse.getUsedDays() + " 天" + "，共记账 " + userInfoResponse.getBillCount() + " 笔");
                     Picasso.get()
                             .load(Utils.processAvatarUrl(userInfoResponse.getAvatar()))

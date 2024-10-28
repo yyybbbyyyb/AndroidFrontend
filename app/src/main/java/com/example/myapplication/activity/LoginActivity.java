@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(@NonNull View widget) {
                 Intent intent = new Intent(LoginActivity.this, WebViewActivity.class);
-                intent.putExtra("url", "https://www.example.com/user-agreement");
+                intent.putExtra("url", "https://yyybbbyyyb.github.io");
                 startActivity(intent);
             }
         };
@@ -192,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(@NonNull View widget) {
                 Intent intent = new Intent(LoginActivity.this, WebViewActivity.class);
-                intent.putExtra("url", "https://www.example.com/privacy-policy");
+                intent.putExtra("url", "https://github.com/yyybbbyyyb");
                 startActivity(intent);
             }
         };
