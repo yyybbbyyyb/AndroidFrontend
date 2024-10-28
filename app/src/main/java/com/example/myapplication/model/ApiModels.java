@@ -200,4 +200,30 @@ public class ApiModels {
         }
     }
 
+    public static class ChatResponse {
+        private String response;
+        private String ai_avatar;
+
+        public String getMessage() {
+            return response;
+        }
+
+        public int getAiAvatar() {
+            return Integer.parseInt(ai_avatar);
+        }
+    }
+
+    public static class WarningResponse {
+        private String response;
+        private boolean is_warning;
+
+        public String getMessage() {
+            return response;
+        }
+
+        public boolean isWarning() {
+            return is_warning;
+        }
+    }
+
 }

@@ -120,4 +120,14 @@ public interface ApiService {
     @GET("total-expense-by-category/")
     Call<ApiResponse<ApiModels.TotalExpenseByCategoryResponse>> getTotalExpenseByCategory(@QueryMap() Map<String, String> map);
 
+    // ----------------------------
+
+    @POST("bill-chat/")
+    Call<ApiResponse<ApiModels.ChatResponse>> billChat(@Body Map<String, String> map);
+
+    @POST("normal-chat/")
+    Call<ApiResponse<ApiModels.ChatResponse>> normalChat(@Body Map<String, String> map);
+
+    @GET("analyze_ledger/")
+    Call<ApiResponse<ApiModels.WarningResponse>> analyzeLedger(@QueryMap() Map<String, String> map);
 }

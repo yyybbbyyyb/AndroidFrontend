@@ -62,6 +62,9 @@ dependencies {
 
     implementation("com.kizitonwose.calendar:view:2.5.0")
 
+    implementation("com.github.skydoves:powermenu:2.2.1")
+
+
     // 配置 desugaring 库
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

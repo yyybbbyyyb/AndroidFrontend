@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.AIFragment;
 import com.example.myapplication.fragment.AccountFragment;
 import com.example.myapplication.fragment.ChartFragment;
 import com.example.myapplication.fragment.DetailFragment;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.navigation_account) {
                     selectedFragment = new AccountFragment();
                 } else if (item.getItemId() == R.id.navigation_ai) {
-//                    selectedFragment = new AIFragment();
+                    selectedFragment = new AIFragment();
                 } else if (item.getItemId() == R.id.navigation_profile) {
                     selectedFragment = new ProfileFragment();
                 }
