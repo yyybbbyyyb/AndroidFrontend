@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,6 +68,11 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
+
+        // 设置状态栏颜色
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.white));
+
 
         Intent intent = getIntent();
         ledger_id = intent.getIntExtra("ledger_id", 0);

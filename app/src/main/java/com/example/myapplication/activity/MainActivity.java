@@ -16,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Fragment currentFragment = new DetailFragment();  // 初始化为默认Fragment
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +28,15 @@ public class MainActivity extends AppCompatActivity {
         // 设置默认 Fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new DetailFragment())
-                    .commit();
+                    .replace(R.id.fragment_container, currentFragment)
+                    .commitAllowingStateLoss();
         }
 
-        // 处理导航点击
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull android.view.MenuItem item) {
-                Fragment selectedFragment = null;
 
+                Fragment selectedFragment = null;
                 if (item.getItemId() == R.id.navigation_detail) {
                     selectedFragment = new DetailFragment();
                 } else if (item.getItemId() == R.id.navigation_chart) {
@@ -48,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new ProfileFragment();
                 }
 
-                if (selectedFragment != null) {
+                // 只在选中不同Fragment时切换
+                if (selectedFragment != null && !selectedFragment.getClass().equals(currentFragment.getClass())) {
+                    currentFragment = selectedFragment;
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, selectedFragment)
-                            .commit();
+                            .replace(R.id.fragment_container, currentFragment)
+                            .commitAllowingStateLoss();
                 }
                 return true;
             }
         });
     }
-
 }

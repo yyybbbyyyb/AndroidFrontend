@@ -74,6 +74,8 @@ public class AIFragment extends Fragment {
         recyclerViewChat.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewChat.setAdapter(chatAdapter);
 
+        chatMessages.add(new ChatMessage("耀小喵是实时对话呦，离开了聊天记录就消失了，记账模式日期默认今天呦！", false, "https://example.com/ai_avatar.png", 0, 0));
+
         analyzeLedger(() -> {
             initBtn();
         });

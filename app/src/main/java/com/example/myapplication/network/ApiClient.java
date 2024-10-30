@@ -9,7 +9,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://10.0.2.2:8000/api/";
+    // 本地测试地址
+    // private static final String BASE_URL = "http://10.0.2.2:8000/api/";
+    // 服务器地址
+    private static final String BASE_URL = "http://47.97.33.7/api/";
+
     private static Retrofit retrofit;
 
     public static Retrofit getClient(Context context) {

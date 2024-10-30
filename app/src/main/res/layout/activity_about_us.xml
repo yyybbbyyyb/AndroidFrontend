@@ -19,8 +19,9 @@
         <!-- 返回图标 -->
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/arrow_back_ios_24px"
             app:layout_constraintBottom_toBottomOf="parent"

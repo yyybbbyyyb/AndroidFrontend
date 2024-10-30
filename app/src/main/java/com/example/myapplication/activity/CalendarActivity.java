@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,11 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        // 设置状态栏颜色
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.white));
+
 
         calendarView = findViewById(R.id.calendarView);
         back = findViewById(R.id.btn_back);

@@ -10,7 +10,7 @@
         android:id="@+id/avatar_container"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="52dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,6 @@
         app:layout_constraintTop_toBottomOf="@id/username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="已记账3天"
         android:textSize="14sp"
         android:letterSpacing="0.1"
         />

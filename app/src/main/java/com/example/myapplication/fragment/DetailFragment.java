@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,9 +59,9 @@ public class DetailFragment extends Fragment {
     TextView ledgerName;
     ImageView dropdownIcon;
 
-    ImageView leftMonth;
+    FrameLayout leftMonth, rightMonth;
     TextView monthText;
-    ImageView rightMonth;
+    ImageView right_btn;
 
     TextView totalIncome;
     TextView totalExpense;
@@ -105,6 +106,7 @@ public class DetailFragment extends Fragment {
         leftMonth = view.findViewById(R.id.calendar_icon_left);
         monthText = view.findViewById(R.id.current_month);
         rightMonth = view.findViewById(R.id.calendar_icon_right);
+        right_btn = view.findViewById(R.id.arrow_forward);
 
         totalIncome = view.findViewById(R.id.income_amount);
         totalExpense = view.findViewById(R.id.expense_amount);
@@ -134,7 +136,7 @@ public class DetailFragment extends Fragment {
             int month = currentDate.get(Calendar.MONTH) + 1;
             monthText.setText(year + "-" + String.format("%02d", month));
 
-            rightMonth.setColorFilter(getResources().getColor(R.color.black));
+            right_btn.setColorFilter(getResources().getColor(R.color.black));
 
             refresh();
         });
@@ -152,22 +154,23 @@ public class DetailFragment extends Fragment {
 
             if (currentDate.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
                     currentDate.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)) {
-                rightMonth.setColorFilter(getResources().getColor(R.color.light_gray));
+                right_btn.setColorFilter(getResources().getColor(R.color.light_gray));
             }
 
             refresh();
         });
 
-        rightMonth.setColorFilter(getResources().getColor(R.color.light_gray));
+        right_btn.setColorFilter(getResources().getColor(R.color.light_gray));
 
     }
 
     private void initDropdownIcon() {
-        dropdownIcon.setOnClickListener(v -> {
+        View.OnClickListener clickListener = v -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
             View sheetView = getLayoutInflater().inflate(R.layout.dialog_ledger, null);
 
             bottomSheetDialog.setContentView(sheetView);
+
             // 更新账本数量
             TextView ledgerTitle = sheetView.findViewById(R.id.tv_ledger_title);
             ledgerTitle.setText("我的账本(" + current_ledgerList.size() + ")");
@@ -182,7 +185,6 @@ public class DetailFragment extends Fragment {
             adapter.setOnEditClickListener(position -> {
                 MyLedgerData selectedLedger = current_ledgerList.get(position);
 
-                // 跳转到编辑账本界面
                 Intent intent = new Intent(getContext(), CreateEditLedgerActivity.class);
                 intent.putExtra("mode", "edit");
                 intent.putExtra("ledger_name", selectedLedger.getName());
@@ -219,7 +221,10 @@ public class DetailFragment extends Fragment {
                 bottomSheetDialog.dismiss();
             });
             bottomSheetDialog.show();
-        });
+        };
+
+        dropdownIcon.setOnClickListener(clickListener);
+        ledgerName.setOnClickListener(clickListener);
     }
 
     @FunctionalInterface

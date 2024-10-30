@@ -7,6 +7,7 @@ import static java.security.AccessController.getContext;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -69,6 +70,11 @@ public class EditBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_bill);
+
+        // 设置状态栏颜色
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.white));
+
 
         // 初始化视图
         initViews();
@@ -198,6 +204,7 @@ public class EditBillActivity extends AppCompatActivity {
     private void setupListeners() {
         // 日期选择
         datePicker.setOnClickListener(v -> showDatePicker());
+        dateText.setOnClickListener(v -> showDatePicker());
 
         // 类型选择
         typePicker.setOnClickListener(v -> {
@@ -207,6 +214,9 @@ public class EditBillActivity extends AppCompatActivity {
 
         // 账本选择
         ledgerPicker.setOnClickListener(v -> {
+            dealLedger();
+        });
+        ledgerText.setOnClickListener(v -> {
             dealLedger();
         });
 

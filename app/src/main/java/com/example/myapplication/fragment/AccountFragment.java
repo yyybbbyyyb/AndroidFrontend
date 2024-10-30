@@ -97,6 +97,7 @@ public class AccountFragment extends Fragment {
     private void setupListeners() {
         // 日期选择
         datePicker.setOnClickListener(v -> showDatePicker());
+        dateText.setOnClickListener(v -> showDatePicker());
 
         // 类型选择
         typePicker.setOnClickListener(v -> {
@@ -108,6 +109,10 @@ public class AccountFragment extends Fragment {
         ledgerPicker.setOnClickListener(v -> {
             dealLedger();
         });
+        ledgerText.setOnClickListener(v -> {
+            dealLedger();
+        });
+
 
         // 保存按钮点击事件
         saveButton.setOnClickListener(v -> saveBill());

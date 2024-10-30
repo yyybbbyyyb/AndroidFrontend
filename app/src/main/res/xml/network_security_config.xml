@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+    <!-- 服务器的 IP 地址配置 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">47.97.33.7</domain>
+    </domain-config>
+
+    <!-- 本地服务器的 IP 地址配置 -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>

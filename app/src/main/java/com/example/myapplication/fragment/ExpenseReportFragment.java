@@ -85,6 +85,11 @@ public class ExpenseReportFragment extends Fragment {
                 if (response.isSuccessful()) {
                     bills = response.body().getData();
 
+                    if (bills == null || bills.size() == 0) {
+                        Toast.makeText(getActivity(), "没有数据可以导出", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
                     // 按年月分类
                     HashMap<String, List<MyBillData>> dateMap = new HashMap<>();
                     for (MyBillData bill : bills) {
@@ -135,6 +140,8 @@ public class ExpenseReportFragment extends Fragment {
             }
 
             totalHeight += adapter.getItemCount() * 30; // 加上每个item之间的间距
+
+            totalHeight += 300; // 加上标题栏和底部栏的高度
 
             // 创建Bitmap来保存整个RecyclerView的内容
             Bitmap bigBitmap = Bitmap.createBitmap(recyclerView.getWidth(), totalHeight, Bitmap.Config.ARGB_8888);

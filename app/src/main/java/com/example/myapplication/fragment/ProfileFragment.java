@@ -151,6 +151,7 @@ public class ProfileFragment extends Fragment {
                     ApiModels.UserInfoResponse userInfoResponse = response.body().getData();
                     username.setText(userInfoResponse.getUsername());
                     info.setText("已记账 " + userInfoResponse.getUsedDays() + " 天" + "，共记账 " + userInfoResponse.getBillCount() + " 笔");
+                    Log.d("Picasso", "Loading image from URL: " + userInfoResponse.getAvatar());
                     Picasso.get()
                             .load(Utils.processAvatarUrl(userInfoResponse.getAvatar()))
                             .into(avatar, new com.squareup.picasso.Callback() {
@@ -190,6 +191,11 @@ public class ProfileFragment extends Fragment {
                     String[] title = {"账本", "类型", "金额", "备注", "日期"};
                     String fileName = "xiaoYaoExportData" + ".xls";
                     List<ArrayList<String>> recordList = new ArrayList<>();
+
+                    if (bills == null || bills.size() == 0) {
+                        Toast.makeText(getActivity(), "没有数据可以导出", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
                     for (MyBillData bill : bills) {
                         ArrayList<String> record = new ArrayList<>();

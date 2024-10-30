@@ -2,7 +2,12 @@
 
     <!-- 基础应用主题，基于 Material3 的 DayNight 模式并设置为全屏 -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowFullscreen">true</item> <!-- 设置为全屏 -->
+<!--        <item name="android:windowFullscreen">true</item> &lt;!&ndash; 设置为全屏 &ndash;&gt;-->
+        <!-- 状态栏颜色 -->
+        <item name="android:statusBarColor">@color/md_theme_background</item>
+
+        <!-- 确保状态栏图标颜色适配浅色/深色状态栏 -->
+        <item name="android:windowLightStatusBar">true</item> <!-- 浅色背景状态栏，深色图标 -->
     </style>
 
     <!-- Light 模式下的 App 主题，继承基础主题 -->

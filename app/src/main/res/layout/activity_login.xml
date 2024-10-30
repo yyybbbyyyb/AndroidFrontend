@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.LoginActivity"
+    android:fitsSystemWindows="true">
 
     <!-- 使用带有渐变效果的图片 -->
 
@@ -13,10 +14,9 @@
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/fade_login_bg"
-        app:layout_constraintTop_toTopOf="parent"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout

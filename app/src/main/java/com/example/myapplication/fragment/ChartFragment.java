@@ -62,7 +62,7 @@ public class ChartFragment extends Fragment {
 
     private Calendar currentDate;
     private int ledger_id;
-    private int inOut = 1; // 1: 收入，2: 支出
+    private int inOut = 2; // 1: 收入，2: 支出
     private List<MyBillData> myBillDataList = new ArrayList<>();
 
     ImageView monthLeft, monthRight;
@@ -331,7 +331,11 @@ public class ChartFragment extends Fragment {
 
         // 设置实际数据的条目
         BarDataSet actualDataSet = new BarDataSet(actualData, "每日开销");
-        actualDataSet.setColor(getResources().getColor(R.color.md_theme_primaryFixedDim)); // 设置主题颜色
+        if (inOut == 1) {
+            actualDataSet.setColor(getResources().getColor(R.color.md_theme_primaryFixedDim));
+        } else {
+            actualDataSet.setColor(getResources().getColor(R.color.md_theme_tertiaryFixedDim));
+        }
         actualDataSet.setDrawValues(false); // 隐藏顶部数值
 
         // 合并数据集

@@ -34,10 +34,8 @@
 
     <ImageView
         android:id="@+id/btn_edit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/edit_note_24px"
-
-
-        />
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:padding="12dp"
+        android:src="@drawable/edit_note_24px" />
 </LinearLayout>

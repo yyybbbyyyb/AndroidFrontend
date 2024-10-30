@@ -26,7 +26,6 @@
             android:textSize="18dp"
             android:letterSpacing="0.05"
             android:layout_height="wrap_content"
-            android:text="你好呀"
             android:textColor="@color/md_theme_onPrimaryContainer" />
     </LinearLayout>
 </LinearLayout>
