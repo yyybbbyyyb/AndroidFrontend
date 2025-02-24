@@ -83,12 +83,24 @@ public class AIFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+
     @FunctionalInterface
     interface AnalyzeLedgerCallback {
         void onAnalyzeLedgerSet();
     }
 
     private void initBtn() {
+        Context context = getContext();
+        if (context == null) {
+            Log.e("AIFragment", "Context is null when initializing PowerMenu");
+            return;
+        }
+
         powerMenu = new PowerMenu.Builder(getContext())
                 .addItem(new PowerMenuItem("普通模式", false))
                 .addItem(new PowerMenuItem("记账模式", false))
@@ -228,6 +240,7 @@ public class AIFragment extends Fragment {
                     chatAdapter.notifyItemInserted(chatMessages.size() - 1);
                     recyclerViewChat.scrollToPosition(chatMessages.size() - 1);
                 } else {
+                    Log.d("AI111", "请求失败: " + response.body().getMessage());
                     Toast.makeText(getActivity(), "请求失败: " + response.body().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }

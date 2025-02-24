@@ -37,20 +37,36 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull android.view.MenuItem item) {
 
                 Fragment selectedFragment = null;
+
                 if (item.getItemId() == R.id.navigation_detail) {
+                    if (currentFragment.getClass().equals(DetailFragment.class)) {
+                        return true;
+                    }
                     selectedFragment = new DetailFragment();
                 } else if (item.getItemId() == R.id.navigation_chart) {
+                    if (currentFragment.getClass().equals(ChartFragment.class)) {
+                        return true;
+                    }
                     selectedFragment = new ChartFragment();
                 } else if (item.getItemId() == R.id.navigation_account) {
+                    if (currentFragment.getClass().equals(AccountFragment.class)) {
+                        return true;
+                    }
                     selectedFragment = new AccountFragment();
                 } else if (item.getItemId() == R.id.navigation_ai) {
+                    if (currentFragment.getClass().equals(AIFragment.class)) {
+                        return true;
+                    }
                     selectedFragment = new AIFragment();
                 } else if (item.getItemId() == R.id.navigation_profile) {
+                    if (currentFragment.getClass().equals(ProfileFragment.class)) {
+                        return true;
+                    }
                     selectedFragment = new ProfileFragment();
                 }
 
                 // 只在选中不同Fragment时切换
-                if (selectedFragment != null && !selectedFragment.getClass().equals(currentFragment.getClass())) {
+                if (selectedFragment != null) {
                     currentFragment = selectedFragment;
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, currentFragment)
